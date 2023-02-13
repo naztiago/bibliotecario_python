@@ -1,5 +1,5 @@
-def eliminar_usuario(dataset : dict):
-    """_Elimina un usuario seleccionado_
+def eliminar_usuario(dataset : dict) -> dict:
+    """_Elimina un usuario seleccionado en caso de que este exista_
 
     Args:
         dataset (dict): recibe un diccionario
@@ -11,6 +11,6 @@ def eliminar_usuario(dataset : dict):
     try:
         name:str = str(input('ingresa el nombre: '))
         del dataset[name]
-        print(f'se elimino el usuario {name}')
+        input(f'se elimino el usuario {name}')
     except:
-        print('ese usuario no existe')
+        input('ese usuario no existe')

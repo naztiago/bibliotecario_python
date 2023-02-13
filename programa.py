@@ -1,10 +1,12 @@
 from agregar_usuario import *
+from actualizar_usuario import *
+from actualizar_usuario_nombre import *
 from eliminar_usuario import *
 from ver_libro_usuario import *
 from os import system
 
 
-def programa_base(personas:dict):
+def programa_base(personas:dict) -> str:
     """_Imprimir menu_
     
     tambien dentro del menu llama a las funciones correspondientes de cada opcion
@@ -12,10 +14,11 @@ def programa_base(personas:dict):
     Args:
         dataset (dict): recibe un diccionario
     
-    Return: no se que imnprime :v  
+    Return: no se que retorna :v  
         
     """
     while True:
+        system("clear")
         print("-"*50)
         print('\033[3m'
         """
@@ -29,30 +32,79 @@ def programa_base(personas:dict):
         )
         seleccion = input("selección: ")
         
-        if seleccion == "1" or seleccion == "2":
+        if seleccion == "1":
             system("clear")
             agregar_usuario(personas)
         
+        if seleccion == "2":
+            system("clear")
+            if len(personas) == 0:
+                input('No existen usuarios todavia')
+            else:  
+                menu_actualizar(personas)
+        
         if seleccion =="3":
-            menu_eliminar(personas)
+            system("clear")
+            if len(personas) == 0:
+                input('No existen usuarios todavia')
+            else:    
+                menu_eliminar(personas)
             
         if seleccion == "4":
-            menu_visualizacion(personas)
+            system("clear")
+            if len(personas) == 0:
+                input('No existen usuarios todavia')
+            else:  
+                menu_visualizacion(personas)
         
         if seleccion == "x":
             break
         print("-"*50)
         
-        
-def menu_eliminar(personas:dict):
-    """_Imprimir menu_
+
+def menu_actualizar(personas:dict) -> str:
+    """_Imprimir menu de eliminacion_
     tambien dentro del menu llama a las funciones correspondientes de cada opcion
     Args:
         dataset (dict): recibe un diccionario
     
-    Return: no se que imnprime :v 
+    Return: no se que retorna :v 
     """
     while True:
+        system("clear")
+        print("-"*50)
+        print(
+        """
+        Seleccione una acción.
+        1. Actualizar libro prestado.
+        2. Actualizar nombre de usuario ya existente.
+        (x) salir
+        """
+        )
+        seleccion = input("selección: ")
+        
+        if seleccion == "1":
+            system("clear")
+            actualizar_usuario(personas)
+             
+        if seleccion =="2":
+            system("clear")
+            actualizar_usuario_nombre(personas)
+        
+        if seleccion == "x":
+            break
+        print("-"*50)
+
+def menu_eliminar(personas:dict) -> str:
+    """_Imprimir menu de eliminacion_
+    tambien dentro del menu llama a las funciones correspondientes de cada opcion
+    Args:
+        dataset (dict): recibe un diccionario
+    
+    Return: no se que retorna :v 
+    """
+    while True:
+        system("clear")
         print("-"*50)
         print(
         """
@@ -65,26 +117,29 @@ def menu_eliminar(personas:dict):
         seleccion = input("selección: ")
         
         if seleccion == "1":
+            system("clear")
             eliminar_usuario(personas)
              
         if seleccion =="2":
+            system("clear")
             personas.clear()
             print('\nLa lista de usuarios se ha borrado completamente')
-            print(personas)
+            input(personas)
         
         if seleccion == "x":
             break
         print("-"*50)
         
-def menu_visualizacion(personas:dict):
-    """_Imprimir menu_
+def menu_visualizacion(personas:dict) -> str:
+    """_Imprimir menu de visualizacion_
     tambien dentro del menu llama a las funciones correspondientes de cada opcion
     Args:
         dataset (dict): recibe un diccionario
     
-    Return: no se que imnprime :v 
+    Return: no se que retorna :v 
     """
     while True:
+        system("clear")
         print("-"*50)
         print(
         """
@@ -97,11 +152,14 @@ def menu_visualizacion(personas:dict):
         seleccion = input("selección: ")
         
         if seleccion == "1":
+            system("clear")
             ver_libro_usuario(personas)
              
         if seleccion =="2":
+            system("clear")
             print('\nLa lista de usuarios es la siguiente')
-            print(personas)
+            print(f' {personas}')
+            input(' ')
         
         if seleccion == "x":
             break
